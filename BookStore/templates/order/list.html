@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+        div.input-group {
+            width: 20%;
+            float: right;
+        }
+
+    </style>
+    <title>주문 목록</title>
+    <script>
+        function a(){
+            location.href="/order/getbyorderer/"+f.orderer.value
+        }
+        function b(){
+            location.href="/order/getbytitle/"+f.book_title.value
+        }
+    </script>
+</head>
+<body>
+<h3>{{session.login_id}}님의 주문 목록</h3>
+<table class="table" id="list-table">
+    <thead>
+        <tr>
+            <th scope="col">주문번호</th>
+            <th scope="col">주문자</th>
+            <th scope="col">책 이름</th>
+            <th scope="col">분류</th>
+            <th scope="col">구매/대여 여부</th>
+            <th scope="col">주문날짜</th>
+            <th scope="col">리뷰쓰기</th>
+            <th scope="col">주문취소</th>
+        </tr>
+    </thead>
+    {% for o in olist %}
+    <tbody>
+        <tr>
+            <td>{{o.order_no}}</td>
+            <td>{{o.orderer}}</td>
+            <td>{{o.book_title}}</td>
+            <td>{{o.book_type}}</td>
+            <td>{{o.buy_rental}}</td>
+            <td>{{o.date.strftime("%c")}}</td>
+            <td><input type="button" value="리뷰작성" class="btn-primary btn"></td>
+            <td><input type="button" value="주문취소" class="btn-primary btn"></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<form name="f">
+    <div class="input-group">
+        <input type="text" class="form-control" name="orderer" placeholder="주문자로 검색" >
+        <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" onclick="a()">검색</button>
+        </span>
+    </div>
+    <div class="input-group">
+        <input type="text" class="form-control" name="book_title" placeholder="책 제목으로 검색">
+        <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" onclick="b()">검색</button>
+        </span>
+    </div>
+</form>
+<!--
+<form name="f">
+    주문자로 검색<input type="text" name="orderer"><input type="button" value="검색" onclick="a()"><br/>
+    제목 검색<input type="text" name="book_title"><input type="button" value="검색" onclick="b()"><br/>
+</form>
+-->
+<a href="/order/myOrder">검색초기화</a><br>
+<a href="/">메인페이지로</a>
+
+<script>
+         var table = document.querySelector('#list-table');
+         table.onclick = function(e){
+                if(e.target.value === "리뷰작성"){
+                   book_title = e.target.parentNode.parentNode.children[2].textContent.trim();
+                   location.href = "/review/add/" + book_title
+
+                }else if(e.target.value === "주문취소"){
+                   order_no = e.target.parentNode.parentNode.children[0].textContent.trim();
+                   location.href = "/order/delete/" + order_no
+                }
+         }
+     </script>
+</body>
+</html>

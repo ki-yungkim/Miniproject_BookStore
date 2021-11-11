@@ -1,0 +1,31 @@
+## 210908
+
+## ---------------------
+## 미니프로젝트 2일차
+## ---------------------
+
+
+#from 위치 잡기 
+https://codechacha.com/ko/how-to-import-python-files/
+
+#데이터 타입 참고
+https://beomi.github.io/categories/flask/sqlalchemy/
+
+# sqlalchemy
+https://docs.sqlalchemy.org/en/14/orm/tutorial.html 
+https://docs.sqlalchemy.org/en/14/core/type_basics.html
+
+# 부트스트랩 
+https://wikidocs.net/81050
+https://getbootstrap.com/docs/4.5/getting-started/download/
+
+# 진행 일정 
+
+- 210907 오전 : Flask, ORM 복습, 회원 테이블 생성 및 web 회원 관련 기능 구축
+- 210907 오후 : 주문 테이블 생성, 게시글 조회 기능 구축, 업무 분담 
+- 210908 오전 : 책 테이블, 리뷰 테이블 생성 
+- 210908 오후 : 통합작업, 오류 정리, 주문시 수량 조정 기능 추가 
+
+
+
+
